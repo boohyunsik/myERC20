@@ -7,7 +7,7 @@ contract ERC20 {
 
     mapping (address => mapping (address => uint256)) private _allowances;
 
-    uint256 private _totalSupply = 200000000;
+    uint256 private _totalSupply = 2100000000;
 
     string private _name;
     string private _symbol;
@@ -15,6 +15,8 @@ contract ERC20 {
     constructor (string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
+        _balances[msg.sender] = _totalSupply;
+        emit Transfer(address(0), msg.sender, _totalSupply);
     }
 
     function name() public view virtual returns (string memory) {
@@ -26,7 +28,7 @@ contract ERC20 {
     }
 
     function decimals() public view virtual returns (uint8) {
-        return 18;
+        return 2;
     }
 
     function totalSupply() public view virtual returns (uint256) {
